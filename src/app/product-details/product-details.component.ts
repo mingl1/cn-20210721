@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Product, products } from '../products';
+import { CartService } from '../cart.service';
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
@@ -9,8 +10,15 @@ import { Product, products } from '../products';
 })
 export class ProductDetailsComponent implements OnInit {
   product: Product|undefined;
+
+  addToCart(product: Product) {
+    this.cartService.addToCart(product);
+    
+  }
+
   constructor(
     private route: ActivatedRoute,
+    private cartService: CartService
   ) { }
 
   ngOnInit() {
